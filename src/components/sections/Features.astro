@@ -4,47 +4,54 @@ import Paragraph from "../shared/Paragraph.astro";
 import Title from "../shared/Title.astro";
 ---
 
-<section id="features">
+<section>
   <Container className="flex flex-col midmd:flex-row gap-10 lg:gap-12">
     <div class="flex-1 flex midmd:w-7/12 lg:w-1/2 flex-col">
-      <Title> AGILIDAD Y AHORRO </Title>
+      <Title><span style="color: #ED2024"> AGILIDAD Y AHORRO </span></Title>
       <Paragraph className="mt-8">
         Nuestra empresa está creada para el delivery, dando a los comercios
         mejores opiniones de reparto, tiempos correctos,
         <br />
         llegar a más zonas y, muy importante, el ahorro al comercio. Ofrecemos una
         app y una integración para automatizar pedidos.
+        <br />
+        <br />
       </Paragraph>
       <Paragraph className="mt-2"
-        ><strong> Nuestros Valores: </strong></Paragraph
+        ><strong style="color: #ED2024"> Nuestros Valores: </strong></Paragraph
       >
       <ul class="mt-8 space-y-4 text-heading-3 font-medium">
         <li>
           <span
+            style="color: #ED2024"
             class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
             >&checkmark;</span
           > RESPETO
         </li>
         <li>
           <span
+            style="color: #ED2024"
             class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
             >&checkmark;</span
           > TOLERANCIA
         </li>
         <li>
           <span
+            style="color: #ED2024"
             class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
             >&checkmark;</span
           > EMPATIA
         </li>
         <li>
           <span
+            style="color: #ED2024"
             class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
             >&checkmark;</span
           > RESPONSABILIDAD
         </li>
         <li>
           <span
+            style="color: #ED2024"
             class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
             >&checkmark;</span
           > COMPETITIVIDAD
@@ -65,14 +72,11 @@ import Title from "../shared/Title.astro";
         >
         </div>
 
-        <span
-          class="absolute w-full aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-tr from-primary to-green-400 opacity-40 blur-2xl left-0 bottom-0"
-        ></span>
         <img
-          src={"/logos/1.png"}
+          src={"/assets/fenix.png"}
           alt="banner image"
-          width="1240"
-          height="1385"
+          width="1340"
+          height="1485"
           class="w-auto left-1/2 -translate-x-1/2 absolute bottom-0 max-h-full"
         />
       </div>
