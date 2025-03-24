@@ -16,13 +16,16 @@ import { Button, Modal, ModalBody } from "free-astro-components";
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
-      const req = await fetch("http://190.114.12.222:21000/client", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const req = await fetch(
+        "https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY5MDYzMDA0MzE1MjZkNTUzMTUxMzIi_pc",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       console.log(await req.json());
     });
