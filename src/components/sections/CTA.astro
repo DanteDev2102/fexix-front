@@ -2,11 +2,16 @@
 import Container from "../shared/Container.astro";
 import Paragraph from "../shared/Paragraph.astro";
 
-import { Button, Modal, ModalBody } from "free-astro-components";
+import { Button } from "free-astro-components";
 ---
 
 <script>
-  console.log(document.getElementById("client-form"));
+  const $openBtn = document.querySelector("#modal-id-open");
+
+  $openBtn?.addEventListener("click", () => {
+    const $modal = document.querySelector("#modal-id");
+    $modal.showModal();
+  });
 
   document
     .getElementById("client-form")
@@ -14,21 +19,25 @@ import { Button, Modal, ModalBody } from "free-astro-components";
       e.preventDefault();
       const form = e.target;
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      // pc_2909d82f299578e4cd675d6178b7e013
-      const req = await fetch(
-        "https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY5MDYzMDA0MzE1MjZkNTUzMTUxMzIi_pc",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer pc_2909d82f299578e4cd675d6178b7e013",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const data = Object.fromEntries(formData);
+      const modal = document.querySelector("#modal-id");
 
-      console.log(await req.json());
+      const req = await fetch("/api/sheet", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (req.ok) {
+        alert("Formulario enviado correctamente");
+        form.reset();
+        modal.close();
+      } else {
+        alert("Error al enviar el formulario");
+      }
     });
 </script>
 
@@ -59,11 +68,7 @@ import { Button, Modal, ModalBody } from "free-astro-components";
           Nuestro equipo te contactará enseguida
         </Paragraph>
         <div class="mx-auto max-w-md sm:max-w-xl pt-10">
-          <Button
-            variant={"primary"}
-            label="Contáctanos"
-            data-modal-trigger="modal-id"
-          >
+          <Button variant={"primary"} label="Contáctanos" id="modal-id-open">
             <span class="text-white relative z-[5]">Contáctanos</span>
           </Button>
         </div>
@@ -72,52 +77,49 @@ import { Button, Modal, ModalBody } from "free-astro-components";
   </Container>
 </section>
 
-<Modal id="modal-id">
-  <ModalBody>
-    <div
-      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-    >
-      <div class="bg-white p-8 rounded-lg">
-        <h2 style="color: #ED2024" class="text-2xl font-bold mb-4">
-          Muévete más rapido con nosotros
-        </h2>
-        <form class="space-y-4" id="client-form">
-          <div>
-            <label class="block">Nombre:</label>
-            <input type="text" name="name" class="border p-2 w-full" />
-          </div>
-          <div>
-            <label class="block">Apellido:</label>
-            <input type="text" name="lastname" class="border p-2 w-full" />
-          </div>
-          <div>
-            <label class="block">Correo:</label>
-            <input type="email" name="email" class="border p-2 w-full" />
-          </div>
-          <div>
-            <label class="block">Teléfono:</label>
-            <input type="tel" name="phone" class="border p-2 w-full" />
-          </div>
-          <div>
-            <label class="block">Dirección:</label>
-            <input type="text" name="address" class="border p-2 w-full" />
-          </div>
-          <div>
-            <label class="block">Selecciona:</label>
-            <select class="border p-2 w-full" name="type">
-              <option value="rider">Rider</option>
-              <option value="restaurante">Restaurante</option>
-            </select>
-          </div>
-          <div class="flex justify-end">
-            <Button
-              label="Enviar"
-              data-modal-close
-              style="background-color:#ED2024; border: none"
-            />
-          </div>
-        </form>
-      </div>
+<dialog id="modal-id">
+  <div
+    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+  >
+    <div class="bg-white p-8 rounded-lg">
+      <h2 style="color: #ED2024" class="text-2xl font-bold mb-4">
+        Muévete más rapido con nosotros
+      </h2>
+      <form class="space-y-4" id="client-form">
+        <div>
+          <label class="block">Nombre:</label>
+          <input type="text" name="name" class="border p-2 w-full" />
+        </div>
+        <div>
+          <label class="block">Apellido:</label>
+          <input type="text" name="lastname" class="border p-2 w-full" />
+        </div>
+        <div>
+          <label class="block">Correo:</label>
+          <input type="email" name="email" class="border p-2 w-full" />
+        </div>
+        <div>
+          <label class="block">Teléfono:</label>
+          <input type="tel" name="phone" class="border p-2 w-full" />
+        </div>
+        <div>
+          <label class="block">Dirección:</label>
+          <input type="text" name="address" class="border p-2 w-full" />
+        </div>
+        <div>
+          <label class="block">Selecciona:</label>
+          <select class="border p-2 w-full" name="type">
+            <option value="rider">Rider</option>
+            <option value="restaurante">Restaurante</option>
+          </select>
+        </div>
+        <div class="flex justify-end">
+          <Button
+            label="Enviar"
+            style="background-color:#ED2024; border: none"
+          />
+        </div>
+      </form>
     </div>
-  </ModalBody>
-</Modal>
+  </div>
+</dialog>
