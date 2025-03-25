@@ -19,7 +19,9 @@ import Container from "../shared/Container.astro";
   <Container className="pb-8 relative overflow-auto">
     <div class="flex flex-col lg:grid-cols-3 lg:items-stretch gap-8 relative">
       <div class="col-span-2 lg:col-span-1 h-auto flex flex-col">
-        <div class="h-full w-full flex justify-center">
+        <div
+          class="h-full w-full flex justify-center flex-col gap-8 items-center"
+        >
           <a href="#" class="relative flex items-center gap-3">
             <div class="relative w-24 h-24 overflow-auto flex rounded-xl">
               <img src="/assets/fenix.png" alt="logo" />
@@ -28,6 +30,9 @@ import Container from "../shared/Container.astro";
               Fénix Delivery
             </div>
           </a>
+          <div class="relative flex items-center gap-3">
+            Av. del Ferrocarril, 10, Oficina 08, Bilbao
+          </div>
         </div>
 
         <!-- social links -->

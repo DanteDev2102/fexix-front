@@ -7,10 +7,16 @@ import { Button } from "free-astro-components";
 
 <script>
   const $openBtn = document.querySelector("#modal-id-open");
+  const $closeBtn = document.querySelector("#close-modal");
 
   $openBtn?.addEventListener("click", () => {
     const $modal = document.querySelector("#modal-id");
     $modal.showModal();
+  });
+
+  $closeBtn?.addEventListener("click", () => {
+    const $modal = document.querySelector("#modal-id");
+    $modal.close();
   });
 
   document
@@ -82,9 +88,22 @@ import { Button } from "free-astro-components";
     class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
   >
     <div class="bg-white p-8 rounded-lg">
-      <h2 style="color: #ED2024" class="text-2xl font-bold mb-4">
-        Muévete más rapido con nosotros
-      </h2>
+      <div class="flex justify-between items-center mb-4">
+        <h2 style="color: #ED2024" class="text-2xl font-bold">
+          Muévete más rapido con nosotros
+        </h2>
+        <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+          <svg
+            class="h-6 w-6 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            ></path>
+          </svg>
+        </button>
+      </div>
       <form class="space-y-4" id="client-form">
         <div>
           <label class="block">Nombre:</label>
